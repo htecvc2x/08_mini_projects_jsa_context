@@ -6,8 +6,6 @@ import { generate as id } from "shortid";
 
 import {AppContext} from './AppContext'
 
-console.log(AppContext);
-
 class App extends Component {
     state = {
         items : defaultState,
