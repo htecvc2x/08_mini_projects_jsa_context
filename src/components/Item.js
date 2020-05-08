@@ -1,10 +1,12 @@
 import React, { Component } from "react";
 import "./Item.css";
 
+import {AppContext} from '../AppContext'
+
 class Item extends Component {
   render() {
-    const { item , onItemRemoved,
-        onItemToggled} = this.props;
+    const {onItemRemoved, onItemToggled} = this.context;
+    const { item } = this.props;
     return (
       <li className="item-box">
         <div className="form-check">
@@ -27,5 +29,7 @@ class Item extends Component {
     );
   }
 }
+
+Item.contextType = AppContext;
 
 export default Item;

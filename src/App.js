@@ -4,6 +4,10 @@ import ListItems from "./components/ListItems";
 import { defaultState } from "./data";
 import { generate as id } from "shortid";
 
+import {AppContext} from './AppContext'
+
+console.log(AppContext);
+
 class App extends Component {
     state = {
         items : defaultState,
@@ -64,20 +68,25 @@ class App extends Component {
   render() {
       const {items} = this.state;
     return (
+    <AppContext.Provider value={{
+        onItemRemoved : this.removeItem,
+        onItemToggled : this.toggleItem
+    }}>
       <div className="container py-3">
         <NewItem onNewItemAdded={this.addItem} />
         <div className="row">
           <div className="col-md-5">
-            <ListItems title="Unpacked Items" items={items} packed={false} onItemRemoved={this.removeItem} onItemToggled={this.toggleItem} />
+            <ListItems title="Unpacked Items" items={items} packed={false} />
           </div>
           <div className="offset-md-2 col-md-5">
-            <ListItems title="Packed Items" items={items} packed={true} onItemRemoved={this.removeItem} onItemToggled={this.toggleItem} />
+            <ListItems title="Packed Items" items={items} packed={true} />
             <button className="btn btn-danger btn-lg btn-block" onClick={this.markAllAsUnpacked}>
               Mark All As Unpacked
             </button>
           </div>
         </div>
       </div>
+    </AppContext.Provider>
     );
   }
 }

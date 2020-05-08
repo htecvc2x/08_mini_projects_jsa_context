@@ -17,8 +17,7 @@ class ListItems extends Component {
   };
 
   render() {
-    const { title, items, packed, 
-        onItemRemoved, onItemToggled} = this.props;
+    const { title, items, packed} = this.props;
     const {searchTerm} = this.state;
     const elements = items
           .filter((item) => item.packed == packed)
@@ -27,10 +26,7 @@ class ListItems extends Component {
           })
           .map((item) => {
     return (
-        <Item item={item}
-            key={item.id}
-            onItemRemoved={onItemRemoved}
-            onItemToggled={onItemToggled}/>
+        <Item item={item} key={item.id} />
     )
     });
     return (
