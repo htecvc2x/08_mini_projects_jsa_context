@@ -2,6 +2,8 @@ import React, { Component } from "react";
 import Item from "./Item";
 import Filter from "./Filter";
 
+import {AppContext} from '../AppContext'
+
 class ListItems extends Component {
   state = {
       searchTerm : ''
@@ -17,7 +19,8 @@ class ListItems extends Component {
   };
 
   render() {
-    const { title, items, packed} = this.props;
+    const { items } = this.context;
+    const { title, packed} = this.props;
     const {searchTerm} = this.state;
     const elements = items
           .filter((item) => item.packed == packed)
@@ -40,5 +43,7 @@ class ListItems extends Component {
     );
   }
 }
+
+ListItems.contextType = AppContext;
 
 export default ListItems;

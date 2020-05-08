@@ -69,6 +69,7 @@ class App extends Component {
       const {items} = this.state;
     return (
     <AppContext.Provider value={{
+        items,
         onItemRemoved : this.removeItem,
         onItemToggled : this.toggleItem
     }}>
@@ -76,10 +77,10 @@ class App extends Component {
         <NewItem onNewItemAdded={this.addItem} />
         <div className="row">
           <div className="col-md-5">
-            <ListItems title="Unpacked Items" items={items} packed={false} />
+            <ListItems title="Unpacked Items" packed={false} />
           </div>
           <div className="offset-md-2 col-md-5">
-            <ListItems title="Packed Items" items={items} packed={true} />
+            <ListItems title="Packed Items" packed={true} />
             <button className="btn btn-danger btn-lg btn-block" onClick={this.markAllAsUnpacked}>
               Mark All As Unpacked
             </button>
